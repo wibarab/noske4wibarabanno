@@ -4,7 +4,7 @@ image:
   tag: "570f661"
   pullPolicy: Always
 extraLabels:
-  "ID": "99999"
+  "ID": "25222"
 gitlab:
   app: "corpus-noske"
   envURL: "git://github.com/wibarab/corpus-data.git"
