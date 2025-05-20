@@ -1,0 +1,56 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/wibarab/corpus-data/corpus-noske
+  tag: "570f661"
+  pullPolicy: Always
+extraLabels:
+  "ID": "99999"
+gitlab:
+  app: "corpus-noske"
+  envURL: "git://github.com/wibarab/corpus-data.git"
+service:
+  enabled: true
+  name: "web"
+  url: "https://noske4wibarabanno.acdh-dev.oeaw.ac.at/"
+  type: ClusterIP
+  externalPort: 8080
+  internalPort: 8080
+ingress:
+  enabled: true
+  path: "/"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+livenessProbe:
+  path: "/"
+  initialDelaySeconds: 15
+  timeoutSeconds: 15
+  scheme: "HTTP"
+  probeType: "httpGet"
+readinessProbe:
+  path: "/"
+  initialDelaySeconds: 5
+  timeoutSeconds: 3
+  scheme: "HTTP"
+  probeType: "httpGet"
+extraVolumeMounts:
+  - name: htpasswd
+    mountPath: /var/lib/access
+  - name: log
+    mountPath: "/var/log/lighttpd"
+  - name: conc
+    mountPath: "/var/lib/bonito/conc"      
+extraVolumes:
+  - name: htpasswd
+    secret:
+      secretName: htpasswd-wibarab
+      items:
+        - key: htpasswd
+          path: htpasswd
+  - name: log
+    persistentVolumeClaim:
+      claimName: wibarab-log
+  - name: conc
+    persistentVolumeClaim:
+      claimName: wibarab-conc
+application:
+  secretName: wibarab-env-vars
