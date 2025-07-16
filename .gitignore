@@ -5,3 +5,6 @@ o
 foo
 updated_secret*
 auto-deploy-app
+*.bak
+foo
+bar

@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/wibarab/corpus-data/corpus-noske
-  tag: "ee65b12fa5"
+  tag: "fe8b350"
   pullPolicy: Always
 extraLabels:
   "ID": "25222"

@@ -5,6 +5,6 @@ It is based on an existing repo:
 ```
 
   repository: ghcr.io/wibarab/corpus-data/corpus-noske
-  tag: "ee65b12fa5"
+  tag: "fe8b350"
 
 ```
